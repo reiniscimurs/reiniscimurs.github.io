@@ -1,10 +1,387 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+  <meta charset="UTF-8">
+  <meta name="description" content="Reinis's Personal Website">
+  <meta name="keywords" content="Reinis Cimurs, Personal Website, Portfolio">
+  <meta name="author" content="Reinis Cimurs">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reinis Cimurs</title>
+
+  <style>
+    /* RESET / BASE STYLES */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    html, body {
+      font-family: Arial, sans-serif;
+      line-height: 1.5;
+      color: #333;
+      overflow-x: hidden;
+      background: #f9f9f9; /* Light body background */
+    }
+
+    /* FADE-IN UP ANIMATION */
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* SIMPLE HEADER */
+    header {
+      background: #fff;
+      text-align: center;
+      padding: 2rem 1rem;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    }
+    header h1 {
+      /* Larger font and dark green color */
+      font-size: 4rem;
+      margin-bottom: 0.5rem;
+      color: #000000;
+    }
+    header p {
+      font-size: 1.25rem;
+      margin-top: 0.5rem;
+      color: #2E7D32;
+    }
+
+    /* NAVIGATION */
+    nav {
+      background: #fff;
+      width: 80%;
+      max-width: 900px;
+      margin: 1.5rem auto 2rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    }
+    nav ul {
+      display: flex;
+      justify-content: center;
+      list-style: none;
+      flex-wrap: wrap;
+    }
+    nav li {
+      margin: 0.5rem 1rem;
+    }
+    nav a {
+      display: block;
+      padding: 0.75rem 1rem;
+      text-decoration: none;
+      color: #333;
+      transition: color 0.3s ease;
+    }
+    /* Accent color for nav hover: dark green */
+    nav a:hover {
+      color: #2E7D32;
+    }
+
+    /* SECTION BASE */
+    section {
+      width: 90%;
+      max-width: 1100px;
+      margin: 2rem auto;
+      background: #fff;
+      border-radius: 8px;
+      padding: 2rem;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+      opacity: 0;           /* For fade-in start */
+      transform: translateY(15px);
+      animation: fadeInUp 0.6s ease forwards;
+      margin-bottom: 3rem;
+    }
+    /* Section titles in dark green */
+    section h2 {
+      margin-top: 0;
+      margin-bottom: 1.5rem;
+      font-size: 1.75rem;
+      color: #2E7D32;
+    }
+
+    /* ABOUT SECTION (2-COLUMN LAYOUT) */
+    #about {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .about-text {
+      flex: 1 1 350px;
+      margin-right: 2rem;
+    }
+    .about-text p {
+      margin-bottom: 1rem;
+    }
+    .profile-image {
+      flex: 0 0 200px;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin: 0 auto;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    /* SOCIAL LINKS */
+    .social-links {
+      margin-top: 1rem;
+    }
+    .social-links a {
+      display: inline-block;
+      margin: 0.5rem 1rem 0.5rem 0;
+      text-decoration: none;
+      color: #333;
+      border: 1px solid #2E7D32;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+    .social-links a:hover {
+      background: #2E7D32;
+      color: #fff;
+    }
+
+    /* PROJECTS SECTION */
+    .project-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-gap: 1.5rem;
+    }
+    .project-list li {
+      background: #fff;
+      border-radius: 6px;
+      padding: 1rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .project-list li:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.08);
+    }
+    .project-list li strong {
+      display: inline-block;
+      margin-bottom: 0.5rem;
+      color: #333;
+      font-size: 1.1rem;
+    }
+    /* 2-col for wider screens */
+    @media (min-width: 768px) {
+      .project-list {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    /* FOOTER (simple) */
+    footer {
+      background: #fff;
+      text-align: center;
+      padding: 2rem 1rem;
+      box-shadow: 0 -4px 6px rgba(0,0,0,0.05);
+      margin-top: 2rem;
+    }
+    footer .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    footer h2 {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+      color: #2E7D32;
+    }
+    footer p {
+      margin: 0.5rem 0;
+      color: #666;
+    }
+
+    /* CONTACT SECTION */
+    #contact {
+      background: #fff;
+      border-radius: 8px;
+      padding: 1rem;
+      display: inline-block;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    }
+    #contact p {
+      margin-bottom: 0.5rem;
+    }
+
+    /* COPYRIGHT */
+    .copyright {
+      margin-top: 1rem;
+      font-size: 0.85rem;
+      color: #666;
+    }
+  </style>
 </head>
 <body>
 
+  <!-- HEADER -->
+  <header>
+    <h1>Reinis Cimurs</h1>
+  </header>
+
+  <!-- NAVIGATION -->
+  <nav>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#publications">Publications</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- ABOUT SECTION -->
+  <section id="about">
+    <div class="about-text">
+      <h2>About Me</h2>
+      <p>
+        Hey there! I’m a machine learning research engineer with a background in Intelligent Robot Engineering.
+        I’m really into autonomous navigation and decision making, and I’m passionate about finding ways
+        to use A.I. in real-world scenarios.
+      </p>
+      <p>
+        I have hands-on experience with Deep Reinforcement Learning-based neural networks for navigation—taking
+        sensor data and using it for robot navigation with ROS in real-life situations. As part of the automotive
+        industry, I currently work on attention-based neural networks for driver modeling using real-world data
+        and Graph Neural Networks.
+      </p>
+      <p>
+        My primary programming language is Python, but I also use C and Matlab when needed. I’m comfortable
+        building deep learning models with TensorFlow and PyTorch.
+      </p>
+      <!-- SOCIAL LINKS -->
+      <div class="social-links">
+        <a href="https://scholar.google.com/citations?user=E-qjCCsAAAAJ&hl=en&oi=ao" target="_blank">Google Scholar</a>
+        <a href="https://www.linkedin.com/in/reinis-cimurs/" target="_blank">LinkedIn</a>
+      </div>
+    </div>
+
+    <img src="images/picture.jpg" alt="Profile Picture" class="profile-image" />
+  </section>
+
+  <!-- PROJECTS SECTION -->
+  <section id="projects">
+    <h2>Projects</h2>
+    <ul class="project-list">
+      <li>
+        <strong>Goal Driven Autonomous Exploration</strong><br>
+        A goal-driven autonomous exploration system that combines reactive and planned
+        robot navigation in unknown environments.
+        <br><br>
+        <iframe
+          width="100%"
+          height="300"
+          src="https://www.youtube.com/embed/MhuhsSdzZFk?si=vCeF-HjV7sNwm1ZV"
+          title="YouTube video player"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen>
+        </iframe>
+        <br>
+        <a href="https://github.com/reiniscimurs/GDAE" target="_blank">[GitHub Repo]</a>
+      </li>
+      <li>
+        <strong>DRL-robot-navigation</strong><br>
+        Deep Reinforcement Learning for mobile robot navigation in ROS Gazebo using
+        Twin Delayed Deep Deterministic Policy Gradient.
+        <br><br>
+        <iframe
+          width="100%"
+          height="300"
+          src="https://www.youtube.com/embed/nNWoabjKxIA?si=CPEohEHN3kui4xD8"
+          title="YouTube video player"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen>
+        </iframe>
+        <br>
+        <a href="https://github.com/reiniscimurs/DRL-robot-navigation" target="_blank">[GitHub Repo]</a>
+      </li>
+      <li>
+        <strong>DRL-robot-navigation-IR-SIM</strong><br>
+        Deep Reinforcement Learning for mobile robot navigation in IR-SIM simulation using
+        DRL algorithms (SAC, TD3, PPO, DDPG, RNN).
+        <br>
+        <a href="https://github.com/reiniscimurs/DRL-robot-navigation-IR-SIM" target="_blank">[GitHub Repo]</a>
+      </li>
+      <li>
+        <strong>Curvature Constrained Path Smoothing with Bezier Curves</strong><br>
+        Python methods for creating and optimizing quadratic and cubic Bezier curves
+        with path smoothing.
+        <br>
+        <a href="https://github.com/reiniscimurs/Bezier-Curve" target="_blank">[GitHub Repo]</a>
+      </li>
+    </ul>
+  </section>
+
+  <!-- PUBLICATIONS SECTION -->
+  <section id="publications">
+    <h2>Select Publications</h2>
+    <ul class="project-list">
+      <li>
+        <strong>Goal-Driven Autonomous Exploration Through Deep Reinforcement Learning</strong>
+        – An autonomous navigation system for goal-driven exploration of unknown environments.
+        <br>
+        <a href="https://ieeexplore.ieee.org/abstract/document/9645287" target="_blank">[Paper Link]</a>
+      </li>
+      <li>
+        <strong>Analyzing Closed-loop Training Techniques for Realistic Traffic Agent Models
+        in Autonomous Highway Driving Simulations</strong>
+        – Analysis of training methods for realistic agent modeling.
+        <br>
+        <a href="https://arxiv.org/abs/2410.15987" target="_blank">[Paper Link]</a>
+      </li>
+      <li>
+        <strong>Goal-oriented Obstacle Avoidance with Deep Reinforcement Learning
+        in Continuous Action Space</strong>
+        – Using deep RL from depth camera inputs for goal-oriented navigation.
+        <br>
+        <a href="https://www.mdpi.com/2079-9292/9/3/411" target="_blank">[Paper Link]</a>
+      </li>
+      <li>
+        <strong>Time-optimized 3D Path Smoothing with Kinematic Constraints</strong>
+        – Generation of a kinematically constrained 3D trajectory from a path planner.
+        <br>
+        <a href="https://link.springer.com/article/10.1007/s12555-019-0420-x" target="_blank">[Paper Link]</a>
+      </li>
+      <li>
+        <strong>Bezier Curve-based Smoothing for Path Planner with Curvature Constraint</strong>
+        – A path smoothing method for two-dimensional path planners with curvature constraints.
+        <br>
+        <a href="https://ieeexplore.ieee.org/abstract/document/7926545" target="_blank">[Paper Link]</a>
+      </li>
+    </ul>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <section id="contact">
+        <h2>Contact</h2>
+        <p>
+          Feel free to reach out:
+          <br>
+          <strong>Email:</strong> ireinisi@gmail.com
+        </p>
+      </section>
+      <div class="copyright">
+        &copy; <span id="year"></span> Reinis Cimurs. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <!-- AUTO-UPDATE COPYRIGHT YEAR -->
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
